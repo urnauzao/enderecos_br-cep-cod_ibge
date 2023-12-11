@@ -4,10 +4,10 @@ Neste repositório você encontrará soluções para:
 - Obtenção de Código Municipal;
 - Lista de Cidades do Brasil atualizada em 2023;
 - Gerador de CEP; e
-- Decorberta do Estado pela faixa de CEP.
+- Descorberta do Estado pela faixa de CEP.
 
 Vídeo sobre a utilização do Repositório:
-[acessar o vídeo](https://youtube.com/)
+[acessar o vídeo](https://youtu.be/6WCt0ocvzBw)
 
 ## Conteúdos Auxiliares
 
