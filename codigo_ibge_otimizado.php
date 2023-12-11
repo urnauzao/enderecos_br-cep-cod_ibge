@@ -5863,7 +5863,7 @@ function aliasTO(): array
 /** HELPERS */
 /** HELPERS */
 
-function removerAcentos(string $texto): string
+function removerAcentosECaracteresEspeciais(string $texto): string
 {
     $texto = mb_strtolower($texto, 'UTF-8');
     $texto = preg_replace('/[áàãâä]/u', 'a', $texto);
@@ -5878,12 +5878,6 @@ function removerAcentos(string $texto): string
     return $texto;
 }
 
-function removerCaracteresEspeciais(string $texto): string
-{
-    $texto = preg_replace('/[^a-zA-Z0-9]/', ' ', $texto);
-    return $texto;
-}
-
 function converterParaMaiusculas(string $texto): string
 {
     $texto = mb_strtoupper($texto, 'UTF-8');
@@ -5895,10 +5889,17 @@ function slugTexto(string $texto): string
     return str_replace(" ", "-", $texto);
 }
 
+/**
+ * Definição da função de limpeza de textos
+ *
+ * @param  string  $texto =: Texto que será recebebido para ser processado e limpo
+ * @param  boolean $upper =: Deixar o texto de saída todo em caixa alta
+ * @param  boolean $slug =: Remove espaços em branco por hífen, ajudando assim a ser utilizado como chaves(keys)
+ * @return string =: Texto após de ser processado e limpo
+ */
 function limparTexto(string $texto, bool $upper = true, bool $slug = false): string
 {
-    $texto = removerAcentos($texto);
-    $texto = removerCaracteresEspeciais($texto);
+    $texto = removerAcentosECaracteresEspeciais($texto);
     $texto = $upper ? converterParaMaiusculas($texto) : $texto;
     $texto = $slug ? slugTexto($texto) : $texto;
     return $texto;
@@ -5910,7 +5911,14 @@ function limparTexto(string $texto, bool $upper = true, bool $slug = false): str
 /** ACOES */
 /** ACOES */
 
-function buscarCidade(string $uf, string $cidade): array | null
+/**
+ * Definição da função de busca de cidades
+ *
+ * @param  string $uf =: Nome do estado(UF) da cidade (max. 2 caracters).
+ * @param  string $cidade =: Nome da cidade a ser encontrada.
+ * @return ?array =: Encontrando a cidade retorna ela, caso contrário retorna vazio.
+ */
+function buscarCidade(string $uf, string $cidade): ?array
 {
     $cidades = match ($uf) {
         "AC" => aliasAC(),

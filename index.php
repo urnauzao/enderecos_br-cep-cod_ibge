@@ -11,14 +11,14 @@ $html = '<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Scripts PHP</title>
+    <title>Lista de Scripts PHP para trabalhar com CEP</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-8">
 
 <div class="max-w-md mx-auto bg-white rounded overflow-hidden shadow-md">
     <div class="bg-gray-200 text-lg font-semibold p-4">
-        Lista de Scripts PHP
+        Lista de Scripts PHP para trabalhar com CEP
     </div>
     <ul class="divide-y divide-gray-300">
 ';
@@ -27,7 +27,7 @@ $html = '<!DOCTYPE html>
 foreach ($files as $file) {
     // Verifica se o arquivo tem a extensão .php
     if (pathinfo($file, PATHINFO_EXTENSION) === 'php') {
-        $html .= '<li class="p-4"><a href="' . $file . '" class="text-blue-500 hover:underline hover:text-blue-900">' . str_replace('.php', '', $file) . '</a></li>';
+        $html .= '<li class="p-4"><a href="' . $file . '" class="text-blue-500 hover:underline hover:text-blue-900">' . str_replace(['.php', '_'], ['', ' '], $file) . '</a></li>';
     }
 }
 

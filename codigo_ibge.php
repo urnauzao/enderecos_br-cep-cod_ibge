@@ -5581,7 +5581,7 @@ function gerarCidadesComCodigoIBGE(): array
     ];
 }
 
-function removerAcentos(string $texto): string
+function removerAcentosECaractesEspeciais(string $texto): string
 {
     $texto = mb_strtolower($texto, 'UTF-8');
     $texto = preg_replace('/[áàãâä]/u', 'a', $texto);
@@ -5593,12 +5593,6 @@ function removerAcentos(string $texto): string
     $texto = preg_replace('/[^a-z0-9]/i', ' ', $texto);
     $texto = preg_replace('/\s+/', ' ', $texto);
     $texto = trim($texto);
-    return $texto;
-}
-
-function removerCaracteresEspeciais(string $texto): string
-{
-    $texto = preg_replace('/[^a-zA-Z0-9]/', ' ', $texto);
     return $texto;
 }
 
@@ -5615,8 +5609,7 @@ function slugTexto(string $texto): string
 
 function limparTexto(string $texto, bool $upper = true, bool $slug = false): string
 {
-    $texto = removerAcentos($texto);
-    $texto = removerCaracteresEspeciais($texto);
+    $texto = removerAcentosECaractesEspeciais($texto);
     $texto = $upper ? converterParaMaiusculas($texto) : $texto;
     $texto = $slug ? slugTexto($texto) : $texto;
     return $texto;
